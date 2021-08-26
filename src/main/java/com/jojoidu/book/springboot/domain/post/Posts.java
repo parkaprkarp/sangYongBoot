@@ -13,7 +13,7 @@ public class Posts {
 
     @Id // PK
     @GeneratedValue(strategy = GenerationType.IDENTITY) // GenerationType.IDENTITY = Auto_increment
-    private Long id;
+    private Long id; // null을 사용할 수 있기 때문에 사용하고 있음 즉 없으면 확실히 null 체크하기 위함
     
     @Column(length = 500, nullable = false) // 테이블 컬럼 / 길이 500 널 미포함
     private String title;
@@ -28,5 +28,10 @@ public class Posts {
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
     }
 }

@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 @RunWith(SpringRunner.class) // SpringRunner 실행자 , 부트테스트와 JUnit사이 연결
-@WebMvcTest(controllers = HelloController.class) // MVC 어노테이션
+@WebMvcTest(controllers = HelloController.class) // MVC 어노테이션 // JPA 작동 X
 public class HelloControllerTest {
 
     @Autowired // 빈 자동 주입
