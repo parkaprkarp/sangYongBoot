@@ -5,9 +5,10 @@ import com.jojoidu.book.springboot.web.dto.PostsResponseDto;
 import com.jojoidu.book.springboot.web.dto.PostsSaveRequestDto;
 import com.jojoidu.book.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
-@RequiredArgsConstructor // final 생성 lombok
+@RequiredArgsConstructor // final 생성 빈 생성 주입 lombok // 주입 스프링에 @Autowired // 필드주입대신 생성사 주입
 @RestController
 public class PostsApiController {
 
@@ -28,5 +29,11 @@ public class PostsApiController {
     @GetMapping("/api/v1/posts/{id}") // 아이디 찾기
     public PostsResponseDto findById(@PathVariable Long id){
         return postsService.findById(id);
+    }
+
+    @DeleteMapping("/api/v1/posts/{id}")
+    public Long delete (@PathVariable Long id){
+        postsService.delete(id);
+        return id;
     }
 }

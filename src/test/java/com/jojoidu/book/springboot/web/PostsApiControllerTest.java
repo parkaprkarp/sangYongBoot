@@ -5,6 +5,7 @@ import com.jojoidu.book.springboot.domain.post.PostsRepository;
 import com.jojoidu.book.springboot.web.dto.PostsSaveRequestDto;
 import com.jojoidu.book.springboot.web.dto.PostsUpdateRequestDto;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,12 @@ public class PostsApiControllerTest {
     @Autowired
     private PostsRepository postsRepository;
 
-    @After
+    @Before // 테스트 전
+    public void testDown() throws Exception{
+        postsRepository.deleteAll();
+    }
+
+    @After // 테스트 후
     public void tearDown() throws Exception {
         postsRepository.deleteAll();
     }
@@ -67,11 +73,11 @@ public class PostsApiControllerTest {
 
         Long updateId = savedPosts.getId();
         String expectedTitle = "title2";
-        String expectedContect = "content2";
+        String expectedContent = "content2";
 
         PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.builder()
                 .title(expectedTitle)
-                .content(expectedContect)
+                .content(expectedContent)
                 .build();
 
         String url = "http://localhost:"+port+"/api/v1/posts/"+updateId;
@@ -88,6 +94,6 @@ public class PostsApiControllerTest {
 
         List<Posts> all = postsRepository.findAll();
         assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
-        assertThat(all.get(0).getContent()).isEqualTo(expectedContect);
+        assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
     }
 }

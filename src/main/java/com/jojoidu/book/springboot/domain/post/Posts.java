@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Getter // 필드내 Getter 메소드 생성
 @NoArgsConstructor // 기본생성자 자동 추가
 @Entity // JPA 어노테이션 // 테이블과 링크될 클래스
-public class Posts {
+public class Posts extends  BaseTimeEntity{
 
     @Id // PK
     @GeneratedValue(strategy = GenerationType.IDENTITY) // GenerationType.IDENTITY = Auto_increment
@@ -20,7 +20,7 @@ public class Posts {
     
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
-    
+
     private String author;
     
     @Builder //
