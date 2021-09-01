@@ -20,7 +20,7 @@ public class PostsSaveRequestDto {
         this.author = author;
     }
 
-    public Posts toEntity() { // 엔티티 DTO // Request/Response 하면 X
+    public Posts toEntity() { // 엔티티 DTO // Request/Response 하면 X // 디비
         return Posts.builder() // 빌더 패턴 어떤 필드에 어떤 값을 넣어주는지 명확히 눈으로 확인할 수 있다!
                 .title(title)
                 .content(content)
